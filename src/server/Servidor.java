@@ -62,7 +62,7 @@ class ClienteHandler implements Runnable {
         
         // Recibir y guardar la imagen
         InputStream entradaImagen = cliente.getInputStream();
-        FileOutputStream archivoSalida = new FileOutputStream("imagenes/imagen_recibida_" + System.currentTimeMillis() + ".jpg");
+        FileOutputStream archivoSalida = new FileOutputStream("src/imagenes/imagen_recibida_" + System.currentTimeMillis() + ".jpg");
         byte[] buffer = new byte[1024];
         int bytesLeidos;
         while ((bytesLeidos = entradaImagen.read(buffer)) != -1) {
@@ -74,8 +74,10 @@ class ClienteHandler implements Runnable {
     }
     
     private void descargarImagenes(Socket cliente) throws IOException {
+    	System.out.println(cliente.getInetAddress()+" ingreso a descargar");
         // Obtener la lista de imágenes disponibles en el servidor
-        File directorio = new File("imagenes");
+        File directorio = new File("src/imagenes");
+        System.out.println(directorio.getAbsolutePath()+" y "+ directorio.getCanonicalPath());
         String[] archivos = directorio.list();
         
         // Enviar la lista de imágenes al cliente

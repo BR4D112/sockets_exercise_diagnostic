@@ -74,6 +74,7 @@ public class Cliente {
         // Recibir la lista de imágenes del servidor
         System.out.println("entro a descargarImagenes");
         ObjectInputStream entradaObjeto = new ObjectInputStream(cliente.getInputStream());
+        System.out.println(cliente.getChannel().isOpen());
         String[] archivos = (String[]) entradaObjeto.readObject();
         entradaObjeto.close();
 
@@ -87,7 +88,7 @@ public class Cliente {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el número de la imagen que desea descargar: ");
         int opcion = scanner.nextInt();
-        scanner.nextLine(); // Consumir el salto de línea después del entero
+        scanner.nextLine();  // Consumir el salto de línea después del entero
 
         // Verificar si la opción es válida
         if (opcion < 1 || opcion > archivos.length) {
